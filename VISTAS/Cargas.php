@@ -37,21 +37,6 @@
             margin-top: auto;
         }
     </style>
-    <!-- Todo lo relaconado con la pwa -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <!-- JS -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script> 
-    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
-    <script src="main.js"></script>
-    <!-- iconos -->
-    <link rel="icon" type="image/png" sizes="192x192"  href="../IMG/android-icon-192x192.png">
-    <!-- Manifest -->
-    <link rel="manifest" href="../manifest.json" crossorigin="use-credentials">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
 </head>
 <body >
     
@@ -73,16 +58,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" >
-                    <?php  
+                <?php  
 
-                        if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
-                    ?>
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-1 active" aria-current="page" href="NuevoUsuario.php">Nuevo usuario</a>
+                    </li>
+                <?php                         
+                    } 
+                ?>
+                <?php  
+
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                ?>
                     <li class="nav-item">
                         <a class="nav-link nav-link-1 active" aria-current="page" href="Cargas.php">Cargar archivo</a>
                     </li>
-                    <?php                         
-                        } 
-                    ?>
+                <?php                         
+                } 
+                ?>
 
                     <li class="nav-item">
                         <a class="nav-link nav-link-1 active" aria-current="page" href="../PHP/CerrarSecion.php">Cerrar sesión:  <?php echo $_SESSION['USUARIO']; ?> </a>

@@ -60,16 +60,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" >
-                    <?php  
+                <?php  
 
-                        if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
-                    ?>
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                ?>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-1 active" aria-current="page" href="../VISTAS/Cargas.php">Cargar archivo</a>
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="../VISTAS/NuevoUsuario.php">Nuevo usuario</a>
                     </li>
-                    <?php                         
-                        } 
-                    ?>
+                <?php                         
+                    } 
+                ?>
+                <?php  
+
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                ?>
+                    <li class="nav-item">
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="../VISTAS/Cargas.php">Cargar archivo</a>
+                    </li>
+                <?php                         
+                    } 
+                ?>
 
                     <li class="nav-item">
                         <a class="nav-link nav-link-1 active" aria-current="page" href="../PHP/CerrarSecion.php">Cerrar sesión:  <?php echo $_SESSION['USUARIO']; ?> </a>
@@ -138,6 +148,43 @@
 							$firstRow = true;
 
 							foreach ($csvData as $row) {
+                                $arr2 = str_split($row[1]);
+
+                    
+                                if(count($arr2) >=6){
+                                    $noEmpleado=$arr2[2].$arr2[3].$arr2[4].$arr2[5];
+                                    $categoria=$arr2[0].$arr2[1];
+                                }else{
+                                    if(count($arr2)==5){
+                                        $noEmpleado="0".$arr2[2].$arr2[3].$arr2[4];
+                                        $categoria=$arr2[0].$arr2[1];
+                                    }else{
+                                        if(count($arr2)==4){
+                                            $noEmpleado="00".$arr2[2].$arr2[3];
+                                            $categoria=$arr2[0].$arr2[1];
+                                        }else{
+                                            if(count($arr2)==3){
+                                                $noEmpleado="000".$arr2[2];
+                                                $categoria=$arr2[0].$arr2[1];
+                                            }else{
+                                                if(count($arr2)==2){
+                                                    $noEmpleado="0000".$arr2[1];
+                                                    $categoria=$arr2[0].$arr2[1];
+                                                }else{
+                                                    if(count($arr2)==1){
+                                                        $noEmpleado="000".$arr2[0];
+                                                        $categoria="0".$arr2[0];
+                                                    }else{
+                                                        $noEmpleado="0000";
+                                                        $categoria="00";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        
+                                    }
+                                    
+                                }
 							    // Si es la primera fila, muéstrala sin procesar
 							    if ($firstRow) {
 							    	echo "<thead>";
@@ -160,8 +207,8 @@
 							        echo "<tr>";
 							        //foreach ($row as $cell) {
 							            echo "<td class='text-center'>".$row[0]."</td>";
-			                            echo "<td class='text-center'>".$row[11]."</td>";
-			                            echo "<td class='text-center'>".$row[12]."</td>";
+			                            echo "<td class='text-center'>$noEmpleado</td>";
+			                            echo "<td class='text-center'>$categoria</td>";
 			                            //echo "<td class='text-center'>".$row[2]."</td>";
 			                            //echo "<td class='text-center'>".$row[3]."</td>";
 			                            //echo "<td class='text-center'>".$row[4]."</td>";

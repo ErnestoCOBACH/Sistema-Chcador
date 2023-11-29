@@ -1,15 +1,4 @@
-<?php
-    include '../PHP/Roles.php';
-  //session_start();
-  $varsesion=$_SESSION['USUARIO'];
-  //$Rol=$_SESSION['Id_empleado'];
-  if ($varsesion == null || $varsesion="") {
-    header("location:../index.php");
-    die();
-  }
 
-
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -35,7 +24,11 @@
     </style>
 </head>
 <body >
-    
+<p>Para colocar un acento agudo en la letra "á", utiliza: &aacute;</p>
+<p>Para colocar un acento agudo en la letra "é", utiliza: &eacute;</p>
+<p>Para colocar un acento agudo en la letra "í", utiliza: &iacute;</p>
+<p>Para colocar un acento agudo en la letra "ó", utiliza: &oacute;</p>
+<p>Para colocar un acento agudo en la letra "ú", utiliza: &uacute;</p>
     <div id="loader-wrapper">
         <div id="loader"></div>
 
@@ -46,7 +39,7 @@
     <div class="col-lg-12" style="background-color:#008474; background-image:url('../img/Background.jpg'); background-size: 100%;">
         <nav class="navbar navbar-expand-lg" >
             <div class="container-fluid" >
-                <a class="navbar-brand" href="../VISTAS/Home.php">
+                <a class="navbar-brand" href="../Vista/Home.php">
                     <img src="../img/logo_res.png" alt="" style="width:180px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" onclick="myFunction()">
@@ -54,52 +47,40 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" >
-                    <?php  
-
-                        if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
-                    ?>
+                    
                     <li class="nav-item">
-                        <a class="nav-link nav-link-1 active" aria-current="page" href="NuevoUsuario.php">Nuevo usuario</a>
-                    </li>
-                    <?php                         
-                        } 
-                    ?>
-                    <?php  
-
-                        if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
-                    ?>
-                        <li class="nav-item">
                         <a class="nav-link nav-link-1 active" aria-current="page" href="Cargas.php">Cargar archivo</a>
-                        </li>
-                    <?php                         
-                        } 
-                    ?>
+                    </li>
+                    
 
                     <li class="nav-item">
-                        <a class="nav-link nav-link-1 active" aria-current="page" href="../PHP/CerrarSecion.php">Cerrar sesión:  <?php echo $_SESSION['USUARIO']; ?> </a>
+                        <a class="nav-link nav-link-1 active" aria-current="page" href="../PHP/CerrarSecion.php">Cerrar sesión:  </a>
                     </li>
                 </ul>
                 </div>
             </div>
         </nav>
     </div>
-    <div class="container-fluid tm-container-content tm-mt-60">
-        <div class="row tm-mb-90 tm-gallery">
-            <center>    
-                <h1>  Bienvenido al sistema de checador </h1>
-                <h2>    </h2>
-            </center>
-
-            <?php 
-                include '../PHP/MuestraChecadas.php';
-            ?>
-            <!--<H1>    </H1>-->
-
-
+    <section class="vh-50 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-3 col-xl-4">
+                    <div class="card bg text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-4-5 text-center">
+                            <form name='signup-form' action="muestra.php" style='color: #000;'method="post" enctype="multipart/form-data">        								
+                                    <label for="archivo " class="input-group-text" >Seleccionar Archivo:</label>
+                                    <input type="file" name="csvFile" id="csvFile" accept=".csv" class="form-control" required>
+                                    <br><br>
+                                    <input type="submit"  class="btn btn-success btn-lg px-5" value="Cargar">
+							</form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+	<footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
         <div class="row">
             <center>
                 <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">

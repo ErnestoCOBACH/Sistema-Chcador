@@ -36,13 +36,7 @@
 </head>
 <body >
     
-    <div id="loader-wrapper">
-        <div id="loader"></div>
-
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
-
-    </div>
+    
     <div class="col-lg-12" style="background-color:#008474; background-image:url('../img/Background.jpg'); background-size: 100%;">
         <nav class="navbar navbar-expand-lg" >
             <div class="container-fluid" >
@@ -54,15 +48,25 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" >
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0" >
-                    <?php  
+                <?php  
 
-                        if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link nav-link-1 active" aria-current="page" href="Cargas.php">Cargar archivo</a>
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="../VISTAS/NuevoUsuario.php">Nuevo usuario</a>
                     </li>
                     <?php                         
-                        } 
+                    } 
+                    ?>
+                    <?php  
+
+                    if ( $_SESSION['NOMBRE_ROL']=='Admin'&& $_SESSION['ALTAS']==1 && $_SESSION['BAJAS']==1 && $_SESSION['CAMBIOS']==1) {
+                    ?>
+                    <li class="nav-item">
+                    <a class="nav-link nav-link-1 active" aria-current="page" href="../VISTAS/Cargas.php">Cargar archivo</a>
+                    </li>
+                    <?php                         
+                    } 
                     ?>
 
                     <li class="nav-item">
@@ -76,7 +80,6 @@
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row tm-mb-90 tm-gallery">
         <?php
-            
             include 'conexion.php';
             $varsesion=$_SESSION['USUARIO'];
               //$Rol=$_SESSION['Id_empleado'];
@@ -100,48 +103,99 @@
                 if ($mysqli->connect_error) {
                     die("Connection failed: " . $mysqli->connect_error);
                 }
-
-                // Iterar sobre los datos CSV y llamar al procedimiento almacenado para insertar en la base de datos
-                foreach ($csvData as $index => $row) {
-                    // Omitir la fila 0
-                    if ($index === 0) {
-                        continue;
+                try{
+                    if (!is_array($csvData) && !is_object($csvData)) {
+                        throw new Exception("Invalid data type for \$csvData. Expected array or object.");
                     }
+                    // Iterar sobre los datos CSV y llamar al procedimiento almacenado para insertar en la base de datos
+                    foreach ($csvData as $index => $row) {
+                        // Omitir la fila 0
+                        if ($index === 0) {
+                            continue;
+                        }
 
-                    $nombre = $row[2];
-                    $apellido = $row[3];
-                    $noTarjeta = $row[4];
-                    $dispositivo = $row[5];
-                    $puntoEvento = $row[6];
-                    $verificacion = $row[7];
-                    $estado = $row[8];
-                    $evento = $row[9];
-                    $notas = $row[10];
-                    $noEmpleado = $row[11];
-                    $categoria = $row[12];
+                        $nombre = $row[2];
+                        $apellido = $row[3];
+                        $noTarjeta = $row[4];
+                        $dispositivo = $row[5];
+                        $puntoEvento = $row[6];
+                        $verificacion = $row[7];
+                        $estado = $row[8];
+                        $evento = $row[9];
+                        $notas = $row[10];
+                        //$noEmpleado = $row[11];
+                        //$categoria = $row[12];
 
-                    $str = $row[0];
+                        $str = $row[0];
 
-                    $arr1 = str_split($str);
-                    $arr2 = str_split($str, 2);
+                        $arr1 = str_split($str);
+                        $arr2 = str_split($row[1]);
 
+                        
+                        if(count($arr2)==6){
+                            $noEmpleado=$arr2[2].$arr2[3].$arr2[4].$arr2[5];
+                            $categoria=$arr2[0].$arr2[1];
+                        }else{
+                            if(count($arr2)==5){
+                                $noEmpleado="0".$arr2[2].$arr2[3].$arr2[4];
+                                $categoria=$arr2[0].$arr2[1];
+                            }else{
+                                if(count($arr2)==4){
+                                    $noEmpleado="00".$arr2[2].$arr2[3];
+                                    $categoria=$arr2[0].$arr2[1];
+                                }else{
+                                    if(count($arr2)==3){
+                                        $noEmpleado="000".$arr2[2];
+                                        $categoria=$arr2[0].$arr2[1];
+                                    }else{
+                                        if(count($arr2)==2){
+                                            $noEmpleado="0000".$arr2[1];
+                                            $categoria=$arr2[0].$arr2[1];
+                                        }else{
+                                            if(count($arr2)==1){
+                                                $noEmpleado="000".$arr2[0];
+                                                $categoria="0".$arr2[0];
+                                            }else{
+                                                $noEmpleado="0000";
+                                                $categoria="00";
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                        //print_r($arr1[0]);
+                        $dia=$arr1[0].$arr1[1];
+                        $mes=$arr1[3].$arr1[4];
+                        $año=$arr1[6].$arr1[7].$arr1[8].$arr1[9];
+                        $hora=$arr1[11].$arr1[12].":".$arr1[14].$arr1[15];
 
-                    //print_r($arr1[0]);
-                    $dia=$arr1[0].$arr1[1];
-                    $mes=$arr1[3].$arr1[4];
-                    $año=$arr1[6].$arr1[7].$arr1[8].$arr1[9];
-                    $hora=$arr1[11].$arr1[12].":".$arr1[14].$arr1[15];
+                        // Llamar al procedimiento almacenado
 
-                    // Llamar al procedimiento almacenado
-                    $sqlAcciones = $mysqli->query("CALL P_InsertarRegistro('$nombre','$apellido','$noTarjeta','$dispositivo','$puntoEvento','$verificacion', '$estado', '$evento', '$notas', '$noEmpleado', '$categoria', '$dia', '$mes', '$año', '$hora');");
+                        //$sql = $mysqli->query("CALL P_RevisarRegistros($dia, $mes, $año, '$hora', '$noEmpleado');");
 
+                        //$sql = $mysqli->query("CALL P_RevisarRegistros($dia, $mes, $año, '$hora', '$noEmpleado');");
 
+                        
+                        
+                        $sqlAcciones = $mysqli->query("CALL P_RevisarEInsertarRegistro('$nombre', '$apellido', '$noTarjeta', '$dispositivo', '$puntoEvento', '$verificacion', '$estado', '$evento', '$notas', '$noEmpleado', '$categoria', '$dia', '$mes', '$año', '$hora');");
+                        //echo "'$nombre', '$apellido', '$noTarjeta', '$dispositivo', '$puntoEvento', '$verificacion', '$estado', '$evento', '$notas', '$noEmpleado', '$categoria', '$dia', '$mes', '$año', '$hora'<br>";
+                        //                               call P_InsertarRegistro('$nombre', '$apellido', '$noTarjeta', '$dispositivo', '$puntoEvento', '$verificacion', '$estado', '$evento', '$notas', '$noEmpleado', '$categoria', '$dia', '$mes', '$año', '$hora');
+
+                    }
+                    echo "<h2>Se registraron con exito!</h2>";
+                } catch (Exception $e) {
+                    // Handle the exception here
+                    echo "Ha ocurrido un error: el csv no contiene el cotejamiento necesaro es necesario cambiarlo a utf8" ;
                 }
 
-                echo "<h2>Se registraron con exito!</h2>";
+                
 
             } else {
-              echo "<h2>Error de varga vuelve a intentarlo!</h2>";
+              echo "<h2>Error vuelve a intentarlo!</h2>";
             }
           ?>         
 

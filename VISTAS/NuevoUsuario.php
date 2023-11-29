@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="../fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../css/templatemo-style.css">
     <link rel="shortcut icon" href="../img/logob.png">
-    <title>Home</title>
+
+    <title>Cambiar Foto</title>
     <style>
         body {
             display: flex;
@@ -35,7 +36,7 @@
     </style>
 </head>
 <body >
-    
+
     <div id="loader-wrapper">
         <div id="loader"></div>
 
@@ -44,7 +45,7 @@
 
     </div>
     <div class="col-lg-12" style="background-color:#008474; background-image:url('../img/Background.jpg'); background-size: 100%;">
-        <nav class="navbar navbar-expand-lg" >
+    <nav class="navbar navbar-expand-lg" >
             <div class="container-fluid" >
                 <a class="navbar-brand" href="../VISTAS/Home.php">
                     <img src="../img/logo_res.png" alt="" style="width:180px;">
@@ -83,22 +84,58 @@
             </div>
         </nav>
     </div>
-    <div class="container-fluid tm-container-content tm-mt-60">
-        <div class="row tm-mb-90 tm-gallery">
-            <center>    
-                <h1>  Bienvenido al sistema de checador </h1>
-                <h2>    </h2>
-            </center>
-
-            <?php 
-                include '../PHP/MuestraChecadas.php';
-            ?>
-            <!--<H1>    </H1>-->
-
-
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-3 col-xl-4">
+                    <div class="card bg text-white" style="border-radius: 2rem;">
+                        <div class="card-body p-4-5 text-center" style="color: #000000;">
+                        <form method="post" action="" name="signup-form" >
+                        <?php 
+                            include '../PHP/InsertarUsuario.php';
+                        ?> 
+                            <div class='form-outline form-white mb-4'>
+                                <input type='number' id='NoEmpleado' class='form-control form-control-lg' placeholder='No. Empleado' name='Empleado'  required />
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>No. Empleado</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='text' id='Nombre' class='form-control form-control-lg' placeholder='Nombre' name='Nombre'   required/>
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Nombre</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='text' id='RFC' class='form-control form-control-lg' placeholder='RFC' name='RFC'  required />
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>RFC</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='text' id='Descripcion' class='form-control form-control-lg' placeholder='Descripcion' name='Descripcion'  required />
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Descripcion</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='text' id='Correo' class='form-control form-control-lg' placeholder='Correo' name='Correo'   required/>
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Correo</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='password' id='Contraseña' class='form-control form-control-lg' placeholder='Contraseña' name='Contraseña'  required />
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Contraseña</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='password' id='ConfContraseña' class='form-control form-control-lg' placeholder='Confirmacion de contraseña' name='ConfContraseña'   required/>
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Confirmacion de contraseña</label>
+                            </div>
+                            <div class='form-outline form-white mb-4'>
+                                <input type='number' id='IdEmpleado' class='form-control form-control-lg' placeholder='Id. Empleado' name='IdEmpleado'  required />
+                                <label class='form-label' for='typeEmailX' style='color: #000;'>Id. Empleado</label>
+                            </div>
+                            <input type="submit" class="btn btn-success btn-lg px-5"  value="Mandar" name="btn_Iniciar">
+                            
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
+    </section>
+    <br><br><br><br>
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
         <div class="row">
             <center>
@@ -131,6 +168,7 @@
             }
         } 
     </script>
+    <script src="js/MostrarDatos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.2/dist/umd/popper.min.js" integrity="sha384-q9CRHqZndzlxGLOj+xrdLDJa9ittGte1NksRmgJKeCV9DrM7Kz868XYqsKWPpAmn" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
