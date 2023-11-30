@@ -14,12 +14,15 @@ if (!empty($_POST['btn_Iniciar'])) {
         if ($datos = $sql->fetch_object()) {
             session_start();
             $_SESSION['USUARIO'] = $Correo;
+            
             //var_dump($datos);
             //echo   ($datos['ContaNue']);
 
-            $CambioDeContra = $datos->ContaNue;           
-
-            echo "CambioDeContra: " . $CambioDeContra . "<br>";
+            $CambioDeContra = $datos->ContaNue;     
+            $Nombre = $datos->NombreCom;       
+            $_SESSION['NOMBRE'] =$Nombre;
+            //echo $_SESSION['NOMBRE'];
+            //echo "CambioDeContra: " . $CambioDeContra . "<br>";
 
             if($CambioDeContra=='0'){
                 header("location:./PHP/CambioContra.php");

@@ -86,8 +86,8 @@
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row tm-mb-90 tm-gallery">
             <center>    
-                <h1>  Bienvenido al sistema de checador </h1>
-                <h2>    </h2>
+                <h1>  Bienvenido al sistema de checador  </h1>
+                <h2>  Empleado: <?php echo $_SESSION['NOMBRE']; ?>  </h2>
             </center>
 
             <?php 
@@ -95,8 +95,10 @@
             ?>
             <!--<H1>    </H1>-->
 
-
+            <input type="button"  value="Imprimir" class="btn btn-dark" id="btn_imprimir" onclick="imprimir()" >
+            <!--<input type="button"  value="Imprimir" class="btn btn-success" onclick="window.print();">-->
         </div>
+        
     </div>
 
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
@@ -114,6 +116,19 @@
         $(window).on("load", function() {
             $('body').addClass('loaded');
         });
+        
+    </script>
+    <script>
+        function imprimir(){
+            var elemento = document.getElementById('btn_imprimir');
+            elemento.style.display = "none";
+            
+            setTimeout(function(){ 
+                elemento.style.display =  "block"; //o inline
+            }, 3000);
+            window.print();
+            
+        }
         
     </script>
     <script type="text/javascript">
