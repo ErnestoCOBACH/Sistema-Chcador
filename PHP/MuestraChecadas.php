@@ -8,7 +8,7 @@ $sql = $mysqli->query("CALL P_RevisarChecadas('$Correo');");
 if ($sql) {
     echo "<table class='table table-striped '>";
     echo "<tr>";
-    echo "<th class='table-dark text-center'>Estado</th>";
+    //echo "<th class='table-dark text-center'>Estado</th>";
 	echo "<th class='table-dark text-center'>Verificacion</th>";
 	echo "<th class='table-dark text-center'>Fecha</th>";
 	echo "<th class='table-dark text-center'>Hora</th>";
@@ -22,7 +22,7 @@ if ($sql) {
 
     while ($row = $sql->fetch_assoc()) {
         echo "<tr>";
-        echo "<td class='text-center'>" . htmlspecialchars($row['Estado']) . "</td>";
+        //echo "<td class='text-center'>" . htmlspecialchars($row['Estado']) . "</td>";
 		echo "<td class='text-center'>" . htmlspecialchars($row['Verificacion']) . "</td>";
 		echo "<td class='text-center'>" . htmlspecialchars($row['Dia']) .'/'.$row['Mes'] .'/'.$row['Anio']. "</td>";
 		echo "<td class='text-center'>" . htmlspecialchars($row['Hora']) . "</td>";
