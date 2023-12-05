@@ -105,6 +105,25 @@
                                     
                                 
                             </form>
+                            
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card bg text-white" style="border-radius: 1rem;">
+                        <div class="card-body p-4-5 text-center">
+                            <form name='signup-form' action="../PHP/RegistrosApp.php" method="post"  style='color: #000;'method="post" enctype="multipart/form-data">
+
+                                
+                                    
+                                        
+                                        <label for="archivo " class="input-group-text" >Carga registros de la aplicacion:</label>
+                                        
+                                        <br><br>
+                                        <input type="submit"  class="btn btn-success btn-lg px-5" value="Cargar">
+                                    
+                                
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
